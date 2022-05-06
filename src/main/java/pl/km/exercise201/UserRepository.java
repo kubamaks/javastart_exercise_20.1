@@ -7,13 +7,17 @@ import java.util.List;
 
 @Repository
 public class UserRepository {
-    List<User> users;
+    private List<User> users;
 
     public UserRepository() {
         users = new ArrayList<>();
         users.add(new User("Wojciech", "Kolano", 32));
         users.add(new User("Agnieszka", "Wywrotna", 27));
         users.add(new User("Arkadiusz", "Prosty", 63));
+    }
+
+    public List<User> getUsers() {
+        return users;
     }
 
     public void add(String firstName, String lastName, int age) {

@@ -11,11 +11,12 @@ class UserController {
         this.userRepository = userRepository;
     }
 
-    @RequestMapping("/users")
+    @PostMapping("/users")
+    @GetMapping("/users")
     @ResponseBody
     String printUsers() {
         String result = "";
-        for (User user : userRepository.users) {
+        for (User user : userRepository.getUsers()) {
             result += user.toString() + "<br/>";
         }
         return result;
@@ -30,9 +31,9 @@ class UserController {
         }
         if (firstName.length() > 1 && lastName.length() > 1 && age >= 0 && age < 121) {
             userRepository.add(firstName, lastName, age);
-            return "success.html";
+            return "redirect:success.html";
         } else {
-            return "err.html";
+            return "redirect:err.html";
 
         }
     }
